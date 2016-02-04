@@ -20,6 +20,8 @@ import sys
 
 from winrm import protocol
 
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
 
 AUTH_BASIC = "basic"
 AUTH_KERBEROS = "kerberos"
