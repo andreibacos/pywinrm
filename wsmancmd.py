@@ -20,9 +20,6 @@ import sys
 
 from winrm import protocol
 
-import ssl
-ssl._create_default_https_context = ssl._create_unverified_context
-
 AUTH_BASIC = "basic"
 AUTH_KERBEROS = "kerberos"
 AUTH_CERTIFICATE = "certificate"
@@ -118,7 +115,8 @@ def run_wsman_cmd(url, auth, username, password, cert_pem, cert_key_pem, cmd):
                           username=username,
                           password=password,
                           cert_pem=cert_pem,
-                          cert_key_pem=cert_key_pem)
+                          cert_key_pem=cert_key_pem,
+                          server_cert_validation='ignore')
 
     shell_id = p.open_shell(codepage=CODEPAGE_UTF8)
 
